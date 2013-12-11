@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+  <title>Bookmarklet tests</title>
+</head>
+<body>
+  <h1>Hi I am the background noise</h1>
+  <p>Lorem ipsum likes to play teeball at 3pm everyday</p>
+
+  <script>
+    window.___engage = function () {
+      var url = 'http://localhost:1337'
+        , bookmarkletURL = url + '/bookmarklet.html'
+        , ref = window.location
+        , iframe = document.createElement('iframe')
+        , script = document.createElement('script');
+
+      iframe.src = bookmarkletURL + '?referrer=' + ref;
+      iframe.id = 'bookmarkletframe';
+      iframe.height = 480;
+      iframe.width = 640;
+      iframe.seamless = true;
+
+      iframe.style.border = "none";
+      iframe.style.position = "absolute";
+      iframe.style.marginLeft = "auto";
+      iframe.style.marginRight = "auto";
+      iframe.style.left = "0px";
+      iframe.style.right = "0px";
+      iframe.style.top = "20px";
+
+      script.src = url + "/bookmarkletInjection.js";
+
+      document.body.appendChild(iframe);
+      document.body.appendChild(script);
+    }
+  
+  </script>
+  <a href="javascript:___engage()">OPEN!</a>
+</body>
